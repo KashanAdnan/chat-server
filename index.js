@@ -8,7 +8,7 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://chat-client-tan-gamma.vercel.app/",
     methods: ["GET", "POST"],
   },
 });
@@ -16,7 +16,6 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
   socket.on("join-room", (data) => {
-    console.log(`Joined room ${data}`);
     socket.join(data);
   });
   socket.on("send_message", (data) => {
@@ -27,6 +26,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(3001, () => {
+server.listen(process.env.PORT, () => {
   console.log("Server running");
 });

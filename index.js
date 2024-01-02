@@ -8,7 +8,7 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://chat-client-tan-gamma.vercel.app/",
+    origin: "*",
     methods: ["GET", "POST"],
   },
 });
